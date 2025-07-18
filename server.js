@@ -36,11 +36,22 @@ const server = http.createServer((req, res) => {
     if(req.method === 'GET' && req.url === "/") {
         res.writeHead(200, {"content-type": "text/json"});
         const data = {
-            "saludo": "Hola desde mi servidor te envio un JSON"
+            "saludo": "Hola desde mi servidor te envio un JSON",
+            "ciudad": "La Paz"
         }
 
         res.end(JSON.stringify(data));
-    }    
+    } else if(req.method === 'POST' && req.url === "/registro") {
+         res.end(JSON.stringify({mensaje: "se creo correctamente"}));
+    }  else if(req.method === 'PUT' && req.url === "/actualizar") {
+         res.end(JSON.stringify({mensaje: "se actualizo correctamente la data"}));
+    } else if(req.method === 'DELETE' && req.url === "/eliminar") {
+         res.end(JSON.stringify({mensaje: "se elimino correctamente"}));
+    } else if(req.method === 'PATCH' && req.url === "/actualiza") {
+         res.end(JSON.stringify({mensaje: "se actualizo el dato correctamente"}));
+    } else {
+        console.warn("Error de Metodo u URL");
+    }
 
 })
 
